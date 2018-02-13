@@ -1,0 +1,237 @@
+﻿#include "TSensor.h"
+
+extern char str_HTML_header[] PROGMEM ;
+extern char str_HTML_header_f[] PROGMEM ;
+extern char str_HTML_body[] PROGMEM ;
+extern char str_HTML_body_f[] PROGMEM ;
+
+char str_CSS[] PROGMEM = "<style type=\"text/css\">"
+"body,p{color:navy;font-family:Verdana;font-size: 14px;}\n"
+"table,th,td{border:0px solid black;border-collapse:collapse;}\n"
+"#container{height: 100%;width:100%;display:table;}"
+"#inner{vertical-align:middle;display:table-cell;margin:0}"
+#if GAUGE_GRAPH == 1
+//"#graph_div { width: 200px; margin: 0 auto; }"
+"#graph_div{width:200px;}"
+#elif AREA_GRAPH == 1
+"#graph_div {width: 600px; height: 250px;}"
+#endif
+"</style>\n";
+
+char str_google_api_header[] PROGMEM = 
+#if GAUGE_GRAPH == 1
+"<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>\n"
+#endif
+"<script type='text/javascript' src='https://www.google.com/jsapi'></script>\n";
+
+#if GAUGE_GRAPH == 1 || AREA_GRAPH == 1
+char str_gauge_body[] PROGMEM = "<div id=\"container\">"
+"<div id=\"inner\">\n"
+"<div id=\"graph_div\"></div>\n"
+"</div>"
+"</div>\n";
+#elif GAUGE_THINGSPEAK_GRAPH == 1
+char str_gauge_body[] PROGMEM = "<iframe width=\"450\" height=\"260\" style=\"border: 1px;\""
+"src=\"http://api.thingspeak.com/plugins/";
+char str_gauge_body_2[] PROGMEM = "\"></iframe>";
+#endif
+
+
+
+#if AREA_GRAPH == 1
+char str_guage_header_1[] PROGMEM = "<script type='text/javascript'>"
+"google.load(\"visualization\",\"1\",{packages:[\"corechart\"]});"
+"google.setOnLoadCallback(drawChart);"
+"function drawChart(){"
+"var data = google.visualization.arrayToDataTable([\n";
+
+char str_guage_header_2[] PROGMEM="['Index','Fase1','Fase2','Fase3'],\n";
+
+char str_guage_header_3[] PROGMEM = "]);\n"
+	"var options={title:'Consumo',"
+//	"hAxis: {title: 'amostras'},"
+	"vAxis:{title:'Kwatts'},"
+	"isStacked:true};\n"
+"var chart=new google.visualization.SteppedAreaChart(document.getElementById('graph_div'));"
+"chart.draw(data, options);"
+"}"
+"</script>";
+
+//	char str_guage_header_1_addr_WIFI[] PROGMEM ="	$.getJSON('http://";
+//	char str_guage_header_1_addr_TS1[] PROGMEM =   "  $.getJSON('https://api.thingspeak.com/channels/";
+//	char str_guage_header_1_addr_TS2[] PROGMEM =   "/feed/last.json'";
+//	char str_guage_header_2[] PROGMEM = ", function(data) {\n"
+#endif
+
+#if GAUGE_GRAPH == 1
+char str_guage_header_1[] PROGMEM = "<script type='text/javascript'>"
+//"var channel_id = 26573;"
+//"var api_key = 'VDUTX85M5VYH6Q6U';"
+"var max_gauge_value=1000;"
+"var gauge_name='Consumo';"
+"var chart,charts,data;"
+"google.load('visualization','1', {packages:['gauge']});"
+"google.setOnLoadCallback(initChart);\n"
+"function displayData(point) {\n"
+	"data.setValue(0, 0, gauge_name);\n"
+	"data.setValue(0, 1, point);\n"
+	"chart.draw(data, options);\n"
+"}\n"
+"function loadData() {\n"
+	"var p;\n";
+	//    $.getJSON('https://api.thingspeak.com/channels/' + channel_id + '/feed/last.json?api_key=' + api_key, function(data) {
+	//  	$.getJSON('https://api.thingspeak.com/channels/' + channel_id + '/fields/1.json?results=2', function(data) {
+	//"	$.getJSON('https://api.thingspeak.com/channels/'";
+
+	char str_guage_header_1_addr_WIFI[] PROGMEM ="$.getJSON('http://";
+	char str_guage_header_1_addr_TS1[] PROGMEM =   " $.getJSON('https://api.thingspeak.com/channels/";
+	char str_guage_header_1_addr_TS2[] PROGMEM =   "/feed/last.json'";
+	
+	char str_guage_header_2[] PROGMEM = ",function(data) {\n"
+		//'/fields/1.json?results=2', function(data) {"
+		//	"		c=data.feeds[0].created_at;"
+		//	"		console.log('channel=' + c);"
+		//	"		p = data.feeds[1].field1;"
+		//	"		console.log('p1='+p);"
+		//	"		p = data.feeds[0].field1;"
+		"p = data.field1;\n"
+	//	"console.log('p='+p);\n"
+		"if (p) {\n"
+//			"p = Math.round((p / max_gauge_value) * 100);"
+			"p = Math.round((p / max_gauge_value) * 1000);"
+			"displayData(p);\n"
+		"}\n"
+	"});\n"
+"}\n"
+"function initChart() {\n"
+	"data = new google.visualization.DataTable();\n"
+	"data.addColumn('string', 'Label');\n"
+	"data.addColumn('number', 'Value');\n"
+	"data.addRows(1);\n"
+	"chart=new google.visualization.Gauge(document.getElementById('graph_div'));\n"
+	"options={width:200,height:200,max: 1000,redFrom:90, redTo: 100, yellowFrom:75, yellowTo: 90, minorTicks: 5};\n"
+	"loadData();\n"
+	"setInterval('loadData()',";
+	
+	char str_guage_header_3[] PROGMEM = ");"
+"}"
+"</script>\n";
+#endif
+
+
+#if USE_PAGINA_MOB_PRINCIPAL == 1
+void sendHTMLMobilePrincipal(uint8_t connectionId) {
+	char p[80];
+	PGM_PRINTLN(">MobilePrincipal");
+	//bitSet(ccStatus,CC_DEBUG);
+	sATCIPSENDMultiple(connectionId,POINTER_CHAR_PROGMEM,(uint8_t *)str_HTML_header,true);
+	//if (bitRead(ccStatus,CC_WIFI_ERROR)) return;
+	
+	sendHTMLgauge_header(connectionId,p);
+
+	sATCIPSENDMultiple(connectionId,POINTER_CHAR_PROGMEM,(uint8_t *)str_HTML_header_f,true);
+	
+	sATCIPSENDMultiple(connectionId,POINTER_CHAR_PROGMEM,(uint8_t *)str_HTML_body,true);
+	
+	sendHTMLgauge_body(connectionId);
+	
+	sATCIPSENDMultiple(connectionId,POINTER_CHAR_PROGMEM,(uint8_t *)str_HTML_body_f,true);
+	
+	sATCIPCLOSEMulitple(connectionId);
+}
+#endif
+#if USE_PAGINA_JSON == 1
+void sendHTMLjson(uint8_t connectionId) {
+	char p[40];
+	int i;
+//	PGM_PRINTLN("sendHTMLjson");
+//	i = random(1,1000);
+	strcpy_P(p,PSTR("{\"field1\":\""));
+		
+	itoa(correnteFase1+correnteFase2+correnteFase3,p+strlen(p),10);
+	itoa(i,p+strlen(p),10);
+	strcat(p,"\"}");
+	//bitSet(ccStatus,CC_DEBUG);
+	sATCIPSENDMultiple(connectionId,POINTER_CHAR_RAM,(uint8_t *)p,true);
+	sATCIPCLOSEMulitple(connectionId);
+}
+#endif
+void sendHTMLgauge_header(uint8_t connectionId, char *p)
+{
+	#if GAUGE_GRAPH==0 && GAUGE_THINGSPEAK_GRAPH==0 && AREA_GRAPH==0
+	return;
+	#else
+	// 0=192.168.4.1  1=192.168.x.x rede interna 2=internet
+	uint8_t flag_web=0;
+	
+	if (!strncmp(gParam.web.ip[0],gParam.web.ip[1],9)) {// e nao sou endereco local
+		flag_web=1;
+	} else
+	// testa se tem TS habilitado
+	//	if (bitRead(gParam.status,P_STATUS_GOOGLE_GRAPH))
+		if (bitRead(ccStatus,CC_CWJAP))
+			flag_web=2;
+		else
+			return;   // user na Internet (Externo) e sem TS
+
+	#if GAUGE_THINGSPEAK_GRAPH == 1
+	return;
+	#else
+
+	sATCIPSENDMultiple(connectionId,POINTER_CHAR_PROGMEM,(uint8_t *)str_CSS,true);
+	sATCIPSENDMultiple(connectionId,POINTER_CHAR_PROGMEM,(uint8_t *)str_google_api_header,true);
+	sATCIPSENDMultiple(connectionId,POINTER_CHAR_PROGMEM,(uint8_t *)str_guage_header_1,true);
+	
+	#if AREA_GRAPH == 1
+			sATCIPSENDMultiple(connectionId,POINTER_CHAR_PROGMEM,(uint8_t *)str_guage_header_2,true);
+			list_corrente_log(4,connectionId,p);	
+			sATCIPSENDMultiple(connectionId,POINTER_CHAR_PROGMEM,(uint8_t *)str_guage_header_3,true);
+	#endif
+
+	#if GAUGE_GRAPH == 1
+	switch (flag_web) {
+		case 2:  // acesso pela internet
+		sATCIPSENDMultiple(connectionId,POINTER_CHAR_PROGMEM,(uint8_t *)str_guage_header_1_addr_TS1,true);
+		#if USE_TS_CANAL == 1
+		sATCIPSENDMultiple(connectionId,POINTER_CHAR_RAM,(uint8_t *)gParam.web.clientIdthingspeak,true);
+		#else
+		sATCIPSENDMultiple(connectionId,POINTER_CHAR_RAM,(uint8_t *)"1",true);
+		#endif
+		sATCIPSENDMultiple(connectionId,POINTER_CHAR_PROGMEM,(uint8_t *)str_guage_header_1_addr_TS2,true);
+		break;
+		default:
+		sATCIPSENDMultiple(connectionId,POINTER_CHAR_PROGMEM,(uint8_t *)str_guage_header_1_addr_WIFI,true);
+		sATCIPSENDMultiple(connectionId,POINTER_CHAR_RAM,(uint8_t *)gParam.web.ip[flag_web],true);
+		strcpy(p,"/v'");
+		sATCIPSENDMultiple(connectionId,POINTER_CHAR_RAM,(uint8_t *)p,true);
+		sATCIPSENDMultiple(connectionId,POINTER_CHAR_PROGMEM,(uint8_t *)str_guage_header_2,true);
+	}
+
+	//	itoa(gParam.rede.tempoColetaCorrente*1000,p,10);
+	itoa(gParam.rede.tempoWebCorrente*1000,p,10);
+	sATCIPSENDMultiple(connectionId,POINTER_CHAR_RAM,(uint8_t *)p,true);
+	
+	sATCIPSENDMultiple(connectionId,POINTER_CHAR_PROGMEM,(uint8_t *)str_guage_header_3,true);
+	#endif
+	
+	#endif
+	
+	#endif
+}
+
+void sendHTMLgauge_body(uint8_t connectionId)
+{
+		#if GAUGE_GRAPH==0 && GAUGE_THINGSPEAK_GRAPH==0 && AREA_GRAPH==0
+		return;
+		#else
+
+	if (bitRead(gParam.status,P_STATUS_GOOGLE_GRAPH)) {
+		sATCIPSENDMultiple(connectionId,POINTER_CHAR_PROGMEM,(uint8_t *)str_gauge_body,true);
+		#if GAUGE_THINGSPEAK_GRAPH == 1
+		sATCIPSENDMultiple(connectionId,POINTER_CHAR_RAM,(uint8_t *)gParam.web.pluginIdthingspeak,true);
+		sATCIPSENDMultiple(connectionId,POINTER_CHAR_PROGMEM,(uint8_t *)str_gauge_body_2,true);
+		#endif
+	}
+	#endif
+	
+}
