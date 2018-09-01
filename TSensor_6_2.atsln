@@ -1,0 +1,62 @@
+
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "TSensor", "TSensor_6_2.cppproj", "{15246AD2-88D4-45B0-A934-E600A3DE322E}"
+EndProject
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "TSensor_client_nrf24", "..\TSensor_client_nrf24\TSensor_client_nrf24_6_2.cppproj", "{9E9A2691-64D0-4DBF-A1AD-5E1A948EF452}"
+EndProject
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "Blink", "..\Blink\Blink.cppproj", "{B9CCB097-36B0-4968-9BFB-0E5F14DFBF06}"
+EndProject
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "EmonTX", "..\EmonTX\EmonTX.cppproj", "{07B459B4-8D76-4638-BC6D-A459BA2D616B}"
+EndProject
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "current_only", "..\libraries\EmonLib_master\examples\current_only\current_only_6_2.cppproj", "{42F7791B-868F-4056-886A-0FD757E50FAF}"
+EndProject
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "DS18x20_Temperature", "..\libraries\OneWire\examples\DS18x20_Temperature\DS18x20_Temperature.cppproj", "{8AFAD802-8797-42B7-BB20-47436DF6BE36}"
+EndProject
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "I2C_scanner", "..\I2C_scanner\I2C_scanner.cppproj", "{EF379659-1DED-4DEB-AD20-477C4FDC6DD7}"
+EndProject
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "RF24_scanner", "..\RF24_scanner\RF24_scanner_6_2.cppproj", "{7F057182-B627-466A-BB69-9F6D0C381493}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15246AD2-88D4-45B0-A934-E600A3DE322E}.Debug|AVR.ActiveCfg = Debug|AVR
+		{15246AD2-88D4-45B0-A934-E600A3DE322E}.Debug|AVR.Build.0 = Debug|AVR
+		{15246AD2-88D4-45B0-A934-E600A3DE322E}.Release|AVR.ActiveCfg = Release|AVR
+		{15246AD2-88D4-45B0-A934-E600A3DE322E}.Release|AVR.Build.0 = Release|AVR
+		{9E9A2691-64D0-4DBF-A1AD-5E1A948EF452}.Debug|AVR.ActiveCfg = Debug|AVR
+		{9E9A2691-64D0-4DBF-A1AD-5E1A948EF452}.Debug|AVR.Build.0 = Debug|AVR
+		{9E9A2691-64D0-4DBF-A1AD-5E1A948EF452}.Release|AVR.ActiveCfg = Release|AVR
+		{9E9A2691-64D0-4DBF-A1AD-5E1A948EF452}.Release|AVR.Build.0 = Release|AVR
+		{B9CCB097-36B0-4968-9BFB-0E5F14DFBF06}.Debug|AVR.ActiveCfg = Debug|AVR
+		{B9CCB097-36B0-4968-9BFB-0E5F14DFBF06}.Debug|AVR.Build.0 = Debug|AVR
+		{B9CCB097-36B0-4968-9BFB-0E5F14DFBF06}.Release|AVR.ActiveCfg = Release|AVR
+		{B9CCB097-36B0-4968-9BFB-0E5F14DFBF06}.Release|AVR.Build.0 = Release|AVR
+		{07B459B4-8D76-4638-BC6D-A459BA2D616B}.Debug|AVR.ActiveCfg = Debug|AVR
+		{07B459B4-8D76-4638-BC6D-A459BA2D616B}.Debug|AVR.Build.0 = Debug|AVR
+		{07B459B4-8D76-4638-BC6D-A459BA2D616B}.Release|AVR.ActiveCfg = Release|AVR
+		{07B459B4-8D76-4638-BC6D-A459BA2D616B}.Release|AVR.Build.0 = Release|AVR
+		{42F7791B-868F-4056-886A-0FD757E50FAF}.Debug|AVR.ActiveCfg = Debug|AVR
+		{42F7791B-868F-4056-886A-0FD757E50FAF}.Debug|AVR.Build.0 = Debug|AVR
+		{42F7791B-868F-4056-886A-0FD757E50FAF}.Release|AVR.ActiveCfg = Release|AVR
+		{42F7791B-868F-4056-886A-0FD757E50FAF}.Release|AVR.Build.0 = Release|AVR
+		{8AFAD802-8797-42B7-BB20-47436DF6BE36}.Debug|AVR.ActiveCfg = Debug|AVR
+		{8AFAD802-8797-42B7-BB20-47436DF6BE36}.Debug|AVR.Build.0 = Debug|AVR
+		{8AFAD802-8797-42B7-BB20-47436DF6BE36}.Release|AVR.ActiveCfg = Release|AVR
+		{8AFAD802-8797-42B7-BB20-47436DF6BE36}.Release|AVR.Build.0 = Release|AVR
+		{EF379659-1DED-4DEB-AD20-477C4FDC6DD7}.Debug|AVR.ActiveCfg = Debug|AVR
+		{EF379659-1DED-4DEB-AD20-477C4FDC6DD7}.Debug|AVR.Build.0 = Debug|AVR
+		{EF379659-1DED-4DEB-AD20-477C4FDC6DD7}.Release|AVR.ActiveCfg = Release|AVR
+		{EF379659-1DED-4DEB-AD20-477C4FDC6DD7}.Release|AVR.Build.0 = Release|AVR
+		{7F057182-B627-466A-BB69-9F6D0C381493}.Debug|AVR.ActiveCfg = Debug|AVR
+		{7F057182-B627-466A-BB69-9F6D0C381493}.Debug|AVR.Build.0 = Debug|AVR
+		{7F057182-B627-466A-BB69-9F6D0C381493}.Release|AVR.ActiveCfg = Release|AVR
+		{7F057182-B627-466A-BB69-9F6D0C381493}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
