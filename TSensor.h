@@ -701,6 +701,7 @@ struct TDataLogger {
 #define SECO_INPUT_PULLUP_BIT 0
 #define SECO_FAST_READ_BIT 1
 #define SECO_IMEDIATO_BIT 2
+#define SECO_DESATIVADO_BIT 3
 struct TSensor_Seco {
 	uint8_t valor;
 	uint8_t trocou;

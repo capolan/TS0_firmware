@@ -1724,7 +1724,7 @@ char *recvString(char *ret, char * target1, char *target2, char *target3, uint32
 			else id3=0;
 			start=millis();
 		}
-		delay(5);
+//		delay(5);
 	}
 	//PGM_PRINTLN("<recvString");
 	#if DEBUG > 1|| HAS_BLUETOOTH >= 1

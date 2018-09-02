@@ -7,7 +7,7 @@
 #define TSENSOR_CONFIG
 
 #define TSENSOR_MODELO 0 //1   ///< modelo do TSensor
-#define TSENSOR_SERIE 22// 5// 44 //1   ///< numero de serie
+#define TSENSOR_SERIE 22//11// 44 //1   ///< numero de serie
 
 //***************************************
 // NAO ESQUECER: hardwareSerial.h
@@ -40,11 +40,15 @@
 //#endif   // CAP
 //
 
+// #if WITH_DNS
+// Client.h
+// Udp.h
+
 #define xstr(a)   str(a)
 #define str(a)   #a
 
 #define VERSION_MAJOR	0
-#define VERSION_MINOR	60
+#define VERSION_MINOR	61
 
 #define VERSION xstr(TSENSOR_SERIE) "." xstr(VERSION_MAJOR) "." xstr(VERSION_MINOR)
 
@@ -450,13 +454,19 @@
 #define TSENSOR_RECURSO  (REC_DHT11 | bit(REC_HUMIDADE) | bit(REC_LED1) | bit(REC_LED3) | bit(REC_ALIMENTACAO))
 #endif
 
-#if TSENSOR_SERIE == 11 // TS-11
+#if TSENSOR_SERIE == 11 // RSH Gerador wifi
 #define SSID_AP "ESP_8BB7D3"
-#define "10015"
 #define MD5 "04ec" //04ec5a4da4f257927d876aec06bb96ac
-#define HAS_DHT22 1
-#define HAS_HUMIDITY 1
-#define TSENSOR_RECURSO  (REC_DHT11 | bit(REC_HUMIDADE) | bit(REC_LED1) | bit(REC_LED3) | bit(REC_ALIMENTACAO))
+#define HAS_BLUETOOTH  2
+#define HAS_CORRENTE 0
+#define HAS_ESP8266 1
+#define HAS_CLOCK 0
+#define HAS_SENSOR_SECO 1
+#define HAS_SENSOR_ANALOGICO 0
+#define HAS_BOTAO 1
+#define USE_LOG_EVENTOS 0
+#define USE_LOG_EEPROM 0
+#define TSENSOR_RECURSO  (bit(REC_SENSOR_SECO) | bit(REC_LED1) | bit(REC_LED3) | bit(REC_ALIMENTACAO))
 #endif
 
 #if TSENSOR_SERIE == 12 // TS-12

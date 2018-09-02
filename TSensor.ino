@@ -1367,9 +1367,10 @@ int endThingSpeak(char *data, uint8_t *connectionId) {
 	total=sHTTPREAD();
 	debugvarln(total);
 	#else
-	//	PGM_PRINTLN(">endThingSpeak");
+	//PGM_PRINT(">eThSpk: ");
+	//debugln(*connectionId);
 	#if HAS_ESP8266 == 1
-	recvPkg(0,(uint8_t*)data, 13, 8000, connectionId);
+	recvPkg(0,(uint8_t*)data, 50, 10000, connectionId);
 	#elif HAS_ETH == 1
 	recvPkg(0,(uint8_t*)data, 13, 30000, connectionId);
 	#endif
@@ -1739,7 +1740,7 @@ int updateDadosFeed(uint8_t tipo, uint32_t thora)
 	hello[1]='=';
 	data[0]=hello[2]='\0';
 	if (tipo==1) {
-		#if HAS_SENSOR_SECO == 1
+		#if HAS_SENSOR_SECO == 1 && USE_LOG_EVENTOS == 1
 		if (fases & B_FASE) {
 			strcat_P(data,str_field_ts);
 			strcat(data,hello);

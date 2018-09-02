@@ -10,7 +10,7 @@
 
 #if TSENSOR_SERIE >= 21 && TSENSOR_SERIE < 40 // WIFI
 #undef DEBUG
-#define DEBUG 1
+#define DEBUG 0
 //#define TSSERVER_ADDR_IP "52.35.8.102"   // AWS
 
 #undef HAS_BLUETOOTH
@@ -44,8 +44,7 @@
 #define B_TEMPERATURA bit(B_PORTA_A0) | bit(B_PORTA_A1) | bit(B_PORTA_A2) // porta A0,A1,A2
 #endif
 
-#if TSENSOR_SERIE == 22
-#define MD5 "26db" // "26db5ec01f743a6afd4a1222de6e68f"
+#if TSENSOR_SERIE == 22  // NOVO RSH Geladeira
 #define MD5 "26db" // "26db5ec01f743a6afd4a1222de6e68f"
 #define HAS_SENSOR_ANALOGICO 0
 #define HAS_CORRENTE 0
@@ -54,12 +53,11 @@
 #define HAS_DS18B20 1
 #define HAS_HUMIDITY 1
 #define TEMPERATURA_AMBIENTE_PIN_2 A0
-
-
-#define SENSOR_ANALOGICO_PIN A0
 #define SENSOR_ANALOGICO_PIN_2 A1
 #define CALIBRAGEM_CORRENTE 0xb000  // A2=100A   e A1,A0=temperatura   60.6 -> 100A   30.0 -> 30A
 #define B_TEMPERATURA bit(B_PORTA_A0) | bit(B_PORTA_A1) | bit(B_PORTA_A2) // porta A0,A1,A2
+#define TSENSOR_RECURSO (bit(REC_WIFI) | REC_DHT11| bit(REC_HUMIDADE) | bit(REC_SENSOR_SECO) | \
+		bit(REC_LED1)| bit(REC_LED3) | bit(REC_BOTAO)|bit(REC_ALIMENTACAO))
 #endif
 
 #if TSENSOR_SERIE == 23
@@ -250,7 +248,7 @@ bit(REC_SENSOR_SECO) | bit(REC_LED1) |bit(REC_LED3) | bit(REC_BOTAO)|bit(REC_ALI
 bit(REC_HUMIDADE) | bit(REC_LED1)| bit(REC_LED3) | bit(REC_BOTAO)|bit(REC_ALIMENTACAO))
 #endif
 
-#if TSENSOR_SERIE == 48  // RS Hospitalar
+#if TSENSOR_SERIE == 48  // RS Hospitalar velho
 #define MD5 "8e6e" //"8e6eb14568064678a39bac2a491f8faa"
 #undef HAS_DHT11
 #define  HAS_DHT22 1

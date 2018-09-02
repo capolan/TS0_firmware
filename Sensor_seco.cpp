@@ -152,6 +152,8 @@ uint8_t parse_seco(uint8_t fast)
 	for (i=0 ; i< MAX_SENSOR_SECO && pss->porta[i]; i++) {
 		//debug(i);
 		//SSdebug.print(pss->porta[i]);
+		if (bitRead(pss->tipo[i],SECO_DESATIVADO_BIT)) 
+			continue;
 		if (bitRead(pss->tipo[i],SECO_FAST_READ_BIT) || !fast) {
 			if (parse_seco_one(i) && bitRead(pss->tipo[i],SECO_IMEDIATO_BIT)) {
 				trocou=1;

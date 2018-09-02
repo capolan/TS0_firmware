@@ -279,10 +279,7 @@ char *recvString(char *ret, char * target1, char *target2, char *target3, uint32
 	//PGM_PRINTLN("<recvString");
 	#if DEBUG > 0|| HAS_BLUETOOTH >= 1
 	p[ip]=0;
-	if (bitRead(ccStatus,CC_DEBUG)) {
-		debugvarln(p);
-	}
-	bitClear(ccStatus,CC_DEBUG);
+	debugvarln(p);
 	#endif
 	if (flag_flush) esp8266Flush();
 	return ret;
@@ -469,7 +466,6 @@ boolean sATCIPSENDMultiple(int mux_id, uint8_t tipo_buffer, uint8_t *buffer, boo
 	//if (bitRead(ccStatus,CC_DEBUG))	debugvar(freeMemory());
 	#if DEBUG >= 1 || HAS_BLUETOOTH >= 1
 	debugvar(len);
-	if (1||bitRead(ccStatus,CC_DEBUG)) {
 		uint8_t *b=buffer;
 		for (uint16_t i = 0; i < len; i++) {
 			if (tipo_buffer==POINTER_CHAR_PROGMEM) {
@@ -478,8 +474,6 @@ boolean sATCIPSENDMultiple(int mux_id, uint8_t tipo_buffer, uint8_t *buffer, boo
 				SSdebug.write(*b++);
 			}
 		} // for
-		bitClear(ccStatus,CC_DEBUG);
-	}
 	SSdebug.write('\n');
 
 	#endif

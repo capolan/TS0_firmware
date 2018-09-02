@@ -528,7 +528,6 @@ boolean sATCIPSENDMultiple(int mux_id, uint8_t tipo_buffer, uint8_t *buffer, boo
 	SSdebug.print('s');
 	SSdebug.println(free_ram);
 	uint8_t *b=buffer;
-	if (1||bitRead(ccStatus,CC_DEBUG)) 
 			SSdebug.write('[');
 	for (uint16_t i = 0; i < len; i++) {
 		if (tipo_buffer==POINTER_CHAR_PROGMEM) {
