@@ -4,6 +4,9 @@
 
 # LOG alteracao
 
+## V 0.62
+1. Fechamento
+
 ## V 0.55
 1. Ethernet, sensor seco, sensor analogico e DHT  (cx 0.41  postos SIM)
 2. Removido DNS da biblioteca UIP 

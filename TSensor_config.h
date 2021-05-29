@@ -44,7 +44,7 @@
 #define str(a)   #a
 
 #define VERSION_MAJOR	0
-#define VERSION_MINOR	50
+#define VERSION_MINOR	62
 
 #define VERSION xstr(TSENSOR_SERIE) "." xstr(VERSION_MAJOR) "." xstr(VERSION_MINOR)
 
