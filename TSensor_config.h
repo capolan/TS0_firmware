@@ -7,7 +7,7 @@
 #define TSENSOR_CONFIG
 
 #define TSENSOR_MODELO 0 //1   ///< modelo do TSensor
-#define TSENSOR_SERIE 47//16//48 //42 //1   ///< numero de serie
+#define TSENSOR_SERIE 26 //16//48 //42 //1   ///< numero de serie
 
 //***************************************
 // NAO ESQUECER: hardwareSerial.h
@@ -44,7 +44,7 @@
 #define str(a)   #a
 
 #define VERSION_MAJOR	0
-#define VERSION_MINOR	48
+#define VERSION_MINOR	50
 
 #define VERSION xstr(TSENSOR_SERIE) "." xstr(VERSION_MAJOR) "." xstr(VERSION_MINOR)
 
@@ -65,7 +65,7 @@
 #ifdef _DEBUG
 #define DEBUG _DEBUG
 #else
-#define DEBUG 1
+#define DEBUG 10
 #endif
 
 #define HAS_ESP8266 1
@@ -84,7 +84,6 @@
 #define PERMITE_TROCAR_AP 1
 #define PERMITE_TROCAR_FASES 0
 #define PERMITE_DOWNLOAD 0
-
 
 #define USE_RESET_FIRMWARE_ON_BOOT 0
 
@@ -128,7 +127,7 @@
 // WIFI
 #if HOME == 1
 //#define SSID        "SALA"
-#define SSID        "HOME"
+#define SSID        "HOME2G"
 #define PASSWORD    "123456789a"
 #define PROXY_HTTP	""
 #define PROXY_PORT	0

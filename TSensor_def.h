@@ -52,14 +52,21 @@
 
 #if TSENSOR_SERIE == 23
 #define MD5 "847f" // "847fd04911c5e2f8971b17b14c483a6a"
+#undef HAS_DHT11
+#undef HAS_SENSOR_ANALOGICO 
+#define  HAS_DHT22 1
+#define HAS_HUMIDITY 1
+#define B_TEMPERATURA bit(B_PORTA_A0) // porta A0,A1,A2
+#define TSENSOR_RECURSO (bit(REC_CORRENTE_30A) | REC_DHT11 | bit(REC_WIFI) | bit(REC_HUMIDADE) | bit(REC_RELE) |\
+		bit(REC_LED1) |bit(REC_LED3) | bit(REC_BOTAO)|bit(REC_ALIMENTACAO))
 #endif
 
 #if TSENSOR_SERIE == 24
 #define MD5 "456c" // "456c9de861d864a08e22826916f5eeb0"
 #undef HAS_DHT11
-#undef HAS_DHT22
+#define  HAS_DHT22 1
 #define HAS_DS18B20 1
-#undef HAS_HUMIDITY
+#define HAS_HUMIDITY 1
 #define SENSOR_ANALOGICO_PIN A0
 #define SENSOR_ANALOGICO_PIN_2 0
 #define CALIBRAGEM_CORRENTE 60.6  // 100A
@@ -69,7 +76,10 @@
 #define MD5 "e3c4" // "e3c42efdae41175e1f95071fbafc1aa8"
 #endif
 
-#if TSENSOR_SERIE == 26
+#if TSENSOR_SERIE == 26 // Aninha Comas
+#define HAS_DHT22 0
+#define HAS_HUMIDITY 0
+#define HAS_SENSOR_ANALOGICO 0
 #define MD5 "a703" // "a703e244b7bc5ae16ac8d5fadb5ac4b2"
 #define CALIBRAGEM_CORRENTE 0xb000  // A2=100A   e A1,A0=temperatura   60.6 -> 100A   30.0 -> 30A
 #define B_TEMPERATURA bit(B_PORTA_A0) | bit(B_PORTA_A1) | bit(B_PORTA_A2) // porta A0,A1,A2
@@ -85,6 +95,13 @@
 
 #if TSENSOR_SERIE == 29
 #define MD5 "70c3" // "70c32041c5fda4d81098a22e408c04b9"
+#undef HAS_DHT11
+#undef HAS_HUMIDITY
+#define HAS_CORRENTE 0
+#undef HAS_SENSOR_ANALOGICO
+#define B_TEMPERATURA bit(B_PORTA_A0) // porta A0,A1,A2
+#define TSENSOR_RECURSO (bit(REC_CORRENTE_30A) | bit(REC_WIFI) | bit(REC_DS18B20) |  bit(REC_RELE) |\
+bit(REC_LED1) |bit(REC_LED3) | bit(REC_BOTAO)|bit(REC_ALIMENTACAO))
 #endif
 
 #if TSENSOR_SERIE == 30
@@ -102,7 +119,7 @@
 #define DEBUG 0
 
 #undef HAS_BLUETOOTH
-#define HAS_BLUETOOTH 2
+#define HAS_BLUETOOTH 0
 
 #define SSID_AP "ESP_nnnnnn"
 //#define CANAL_TS "53093"
@@ -152,7 +169,7 @@ bit(REC_SENSOR_ANALOGICO) | bit(REC_LED1) |bit(REC_LED3) | bit(REC_BOTAO)|bit(RE
 
 #endif
 
-#if TSENSOR_SERIE == 42 // ETH
+#if TSENSOR_SERIE == 42 // ETH  AMAIA SP
 #define MD5 "0bec" //"0bec241a53d5493d69ad8a909d393381"
 #undef HAS_SENSOR_ANALOGICO
 #define HAS_CORRENTE 0
@@ -168,21 +185,32 @@ bit(REC_SENSOR_ANALOGICO) | bit(REC_LED1) |bit(REC_LED3) | bit(REC_BOTAO)|bit(RE
 #define MD5 "dbee" //"dbee4c97f38df0b02ea10c8398e74b48"
 #endif
 
-#if TSENSOR_SERIE == 45 
+#if TSENSOR_SERIE == 45 // AMAIA SP substitui 42
 #define MD5 "6c86" //"6c868273f456685ce67dafbac6b5ec23"
+#undef HAS_SENSOR_ANALOGICO
+#define HAS_CORRENTE 0
+#define TSENSOR_RECURSO (bit(REC_ETHERNET) | REC_DHT11| \
+bit(REC_HUMIDADE) | bit(REC_LED1)| bit(REC_LED3) | bit(REC_BOTAO)|bit(REC_ALIMENTACAO))
 #endif
 
 #if TSENSOR_SERIE == 46
 #define MD5 "4dbd" //"4dbdccc6b696107af339c9d170b457fc"
 #endif
 
-#if TSENSOR_SERIE == 47 
+#if TSENSOR_SERIE == 47 // substiuite AMAIA POA sumaça
 #define MD5 "040c" //"040c4b4d4a0ade0e08e0a2f73437dfc8"
 #undef HAS_DHT11 
-#define HAS_DHT22 1
+#undef HAS_HUMIDITY
+#define HAS_DS18B20 1
+#define HAS_SENSOR_ANALOGICO 1
+#define HAS_CORRENTE 0
+#define SENSOR_ANALOGICO_PIN A0
+#define SENSOR_ANALOGICO_PIN_2 0
+#define TSENSOR_RECURSO (bit(REC_ETHERNET) | REC_DHT11| bit(REC_SENSOR_ANALOGICO) | \
+bit(REC_HUMIDADE) | bit(REC_LED1)| bit(REC_LED3) | bit(REC_BOTAO)|bit(REC_ALIMENTACAO))
 #endif
 
-#if TSENSOR_SERIE == 48 
+#if TSENSOR_SERIE == 48  //AMAIA POA
 #define MD5 "8e6e" //"8e6eb14568064678a39bac2a491f8faa"
 #define HAS_SENSOR_ANALOGICO 1
 #define HAS_CORRENTE 0

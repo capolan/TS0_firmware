@@ -36,8 +36,8 @@ Oled_display oled(OLED_RESET);
 #endif
 
 #if HAS_ETH == 1
-#include <SPI.h>
-#include <UIPEthernet.h>
+//#include <SPI.h>
+//#include <UIPEthernet.h>
 #endif
 
 #if HAS_GSM == 1

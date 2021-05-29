@@ -59,6 +59,7 @@ void Temp_create(uint8_t addr[], OneWire *dsx, uint8_t porta) {
 	pTemp=pAux;
 }
 
+
 boolean Temp_search(uint8_t pin) {
 	struct TDS20B18 *pAux=pTemp;
 	while (pAux) {

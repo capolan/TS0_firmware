@@ -492,7 +492,7 @@ boolean sATCIPCLOSEMulitple(uint8_t mux_id)
 	client.flush();
 	client.stop();
 	//Ethernet.maintain();
-	delay(40);
+	//delay(40);
 	return true;
 }
 boolean sATCIPSENDMultiple(int mux_id, uint8_t tipo_buffer, uint8_t *buffer, boolean flag_flush)
